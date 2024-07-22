@@ -1,7 +1,7 @@
 ## 搜索物品
 - 按名称/ID/描述
   - /search `string`
-    > (string为道具名/ID/道具描述;可模糊匹配)
+    > (`string`为道具名/ID/道具描述;可模糊匹配)
 - 列表
   - /search `ID` `ID`
 ## 给予物品
@@ -15,7 +15,7 @@
 - 批量给某人
   - /give `list` `to` `playerID` `string` ... `string` `number`
 
-> (string必须精准输入;number可忽略,默认为1)
+> (`string`必须精准输入;`number`可忽略,默认为`1`)
 
 ## 设置(不稳定,请谨慎使用)
 - 调整检索范围
@@ -35,7 +35,7 @@
  - /help
 ## 使用上一个指令(指令记忆功能)
 - / `参数`
-  > (例如:发送`/search [string/id]`后，下次只需要发送`/ [string/ID]`即可实现同样效果)
+  > (例如:发送 **/search `[string/id]`** 后，下次只需要发送 **/ `[string/ID]`** 即可实现同样效果)
 ## 查看脚本data
 - /data
 
