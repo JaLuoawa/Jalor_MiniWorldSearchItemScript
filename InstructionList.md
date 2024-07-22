@@ -15,7 +15,7 @@
 - 批量给某人
   - /give `list` `to` `playerID` `string` ... `string` `number`
 
-> `string`必须精准输入;`number`可忽略,默认为`1`
+> `string`必须精准输入，可以是道具名也可以是道具ID;`number`可忽略,默认为`1`
 
 ## 设置(不稳定,请谨慎使用)
 - 调整检索范围
