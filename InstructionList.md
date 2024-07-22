@@ -1,7 +1,7 @@
 ## 搜索物品
 - 按名称/ID/描述
   - /search `string`
-   - (string为道具名/ID;可模糊匹配)
+   - (string为道具名/ID/道具描述;可模糊匹配)
 - 列表
   - /search `ID` `ID`
 ## 给予物品
@@ -9,7 +9,7 @@
   - /give `string` `number`
 - 批量
   - /give `list` `string` ... `string` `number`
-  - /give `list` `string` to `string` `number`
+  - /give `list` `string` `to` `string` `number`
 - 按ID给某人
   - /give `to` `playerID` `string` `number`
 - 批量给某人
@@ -35,7 +35,7 @@
  - /help
 ## 使用上一个指令(指令记忆功能)
 - / `参数`
-  - (如:/ list 1 2 3 100)
+  - (例如:发送`/search [string/id]`后，下次只需要发送`/ [string/ID]`即可实现同样效果)
 ## 查看脚本data
 - /data
 
