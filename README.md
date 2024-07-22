@@ -18,10 +18,10 @@
 ## 注意
 - 使用**MiniWorldSearchItemScript**时请确保你的游戏版本在`1.38.0`及以上
 
-```
-以下内容为机翻
-The following content is machine translation
-```
+│┄│
+│以下内容为机翻│
+│The following content is machine translation│
+│┄│
 
 ## Introduction
 - **MiniWouldSearchItemScript** is a script based on the built-in Lua of Mini World.
