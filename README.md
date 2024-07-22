@@ -19,6 +19,8 @@
 - 使用**MiniWorldSearchItemScript**时请确保你的游戏版本在`1.38.0`及以上
 
 ```
+以下内容为机翻
+The following content is machine translation
 ```
 
 ## Introduction
