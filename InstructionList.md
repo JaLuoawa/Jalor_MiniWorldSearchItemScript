@@ -1,7 +1,7 @@
 ## 搜索物品
 - 按名称/ID/描述
   - /search `string`
-    > (string为道具名/ID/道具描述;可模糊匹配)
+   > (string为道具名/ID/道具描述;可模糊匹配)
 - 列表
   - /search `ID` `ID`
 ## 给予物品
