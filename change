@@ -1,0 +1,4 @@
+## 1.1.0
+  -新增**/admin add/remove all/playerID**指令
+   -用于添加/移除房间内可使用指令的玩家权限
+   -/admin add all/remove用于添加/移除房间内所有玩家的使用权限
