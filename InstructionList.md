@@ -30,6 +30,7 @@
   - /screen `true/false`
 - 设置管理员权限(仅房主可用)
   - /admin `add/remove` `all/playerID`
+    > 房主默认为最高级管理员,无需额外对自己进行设置
  - 是否携带标签
    - /tag `true/false`
 
