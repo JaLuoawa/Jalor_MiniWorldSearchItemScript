@@ -28,6 +28,8 @@
   - /desc `true/false`
 - 搜索结果启用筛选
   - /screen `true/false`
+- 设置管理员权限(仅房主可用)
+  - /admin `add/remove` `all/playerID`
  - 是否携带标签
    - /tag `true/false`
 
