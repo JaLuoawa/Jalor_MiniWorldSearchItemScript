@@ -1,13 +1,16 @@
 --全局设置
-range={1,500000}--检索范围
+range={10000000,10010000}--检索范围
 Tag=true--搜索结果携带来源标签
 Wait=0--搜索结果打印延迟
 Tips=false--每次开始都打印指令列表
 DESC=true--显示描述
 SearchDESC=true--启用描述搜索
 Screen=false--标签筛选开关
+AdminList=""--管理员名单(房主默认为最高级管理员)
+
 
 function CSH(event)
+  AdminAll=false
   if event==true then
     LastMsg={}
   end
@@ -67,6 +70,8 @@ function SearchTips(event)
   print("#cff5c2c│└#c66ccff/help")
   print("#cff5c2c├┬使用上一个指令(指令记忆功能)")
   print("#cff5c2c│└#c66ccff/ [参数] #cff5c2c例:/ list 1 2 3 100")
+  print("#cff5c2c├┬设置管理员权限(仅房主可用)")
+  print("#cff5c2c│└#c66ccff/admin add/remove all/playerID")
   print("#cff5c2c├┬查看脚本data")
   print("#cff5c2c│└#c66ccff/data")
   print("#cff5c2c└┬调试信息")
@@ -77,6 +82,9 @@ if Tips==true then
   SearchTips()
 end
 function SearchMain(event)
+r,AdminA=Player:getHostUin()
+--AdminList=AdminList..tostring(AdminA)..','
+if string.find(AdminList,tostring(event.eventobjid))~=nil or AdminA==event.eventobjid or AdminAll==true then
   msg=event.content
   MsgTab={}
   Separator=" "
@@ -193,7 +201,7 @@ function SearchMain(event)
               if Tag==true then
               if Screen==false then
                 print("#cff5c2c[按ID]ID：#c66ccff"..i.."#cff5c2c丨名称：#c66ccff"..ItemList["IdList"][i].."#n")
-                 else
+                else
                 UI:Print2WndWithTag('按ID',"ID：#c66ccff"..i.."#cff5c2c丨名称：#c66ccff"..ItemList["IdList"][i].."#n")
                 end
                 if DESC==true then
@@ -335,6 +343,30 @@ function SearchMain(event)
     end
     Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][SearchDesc][ok]")
   end
+if MsgTab[1]=="/admin" then
+if event.eventobjid==AdminA then
+    if MsgTab[2]=="add" then
+       if MsgTab[3]=="all" then
+         AdminAll=true
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][Admin][AddAll][ok]")
+       else
+         AdminList=AdminList..MsgTab[3]..','
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][Admin][add][ok]")
+       end
+   elseif MsgTab[2]=='remove' then
+       if MsgTab[3]=="all" then
+AdminAll=false
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][Admin][RemoveAll][ok]")
+          AdminList=''
+       else
+          AdminList=string.gsub(AdminList,MsgTab[3],'')
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][Admin][Remove][ok]")
+       end
+    end
+else
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[set][Admin][err][没有最高管理权限]")
+end
+  end
   if MsgTab[1]=="/give" and MsgTab[2]=="to" and MsgTab[4]~="to" then
     if MsgTab[5]==nil then
       num=1
@@ -400,7 +432,7 @@ function SearchMain(event)
       end
       local r,success=Backpack:addItem(objid,id,num)
       if success<num then
-                local r,x,y,z=Actor:getPosition(objid)
+        local r,x,y,z=Actor:getPosition(objid)
         World:spawnItem(x,y,z,id,num-success)
       end
       if r==0 then
@@ -426,12 +458,17 @@ function SearchMain(event)
     Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[data][ok]")
     print("#cff5c2c┌脚本data")
     print("#cff5c2c├检索范围  >>>  #c66ccff"..range[1].."#cff5c2c~#c66ccff"..range[2].."#cff5c2c,可用的道具共#c66ccff"..#ItemList["AllList"].."#cff5c2c个")
-print("#cff5c2c├是否携带标签  >>>  #c66ccff"..tostring(Tag))
-print("#cff5c2c├是否启用搜索描述  >>>  #c66ccff"..tostring(SearchDESC))
-print("#cff5c2c├是否显示描述  >>>  #c66ccff"..tostring(DESC))
-print("#cff5c2c├是否启用筛选  >>>  #c66ccff"..tostring(Screen))
-print("#cff5c2c├记录的指令数量  >>>  #c66ccff"..#LastMsg)
-print("#cff5c2c└等待时间  >>>  #c66ccff"..tostring(Wait).."#cff5c2cs")
+    print("#cff5c2c├是否携带标签  >>>  #c66ccff"..tostring(Tag))
+    print("#cff5c2c├是否启用搜索描述  >>>  #c66ccff"..tostring(SearchDESC))
+    print("#cff5c2c├是否显示描述  >>>  #c66ccff"..tostring(DESC))
+    print("#cff5c2c├是否启用筛选  >>>  #c66ccff"..tostring(Screen))
+    print("#cff5c2c├管理员权限  >>>  #c66ccff"..tostring(AdminList))
+    print("#cff5c2c├记录的指令数量  >>>  #c66ccff"..#LastMsg)
+    print("#cff5c2c└等待时间  >>>  #c66ccff"..tostring(Wait).."#cff5c2cs")
   end
+elseif string.sub(event.content,0,1)=='/' then
+Player:notifyGameInfo2Self(event.eventobjid,"#cff5c2c[NoPermission][无权限,请向最高级管理员索要指令权限]")
+end
 end
 ScriptSupportEvent:registerEvent([=[Player.NewInputContent]=],SearchMain)
+
