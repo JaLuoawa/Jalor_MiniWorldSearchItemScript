@@ -1,5 +1,5 @@
 ## 介绍
-- **MiniWouldSearchItemScript**是基于迷你世界自带Lua运行的脚本。
+- **MiniWorldSearchItemScript**是基于迷你世界自带Lua运行的脚本。
 - 主要功能是帮助开发者更快地获取道具ID以提高开发效率。
 
 ## 使用
