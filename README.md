@@ -26,7 +26,7 @@ The following content is machine translation
 ---
 
 ## Introduction
-- **MiniWouldSearchItemScript** is a script based on the built-in Lua of Mini World.
+- **MiniWorldSearchItemScript** is a script based on the built-in Lua of Mini World.
 - The main function is to help developers obtain item IDs faster to improve development efficiency.
 
 ## Use
